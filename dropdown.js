@@ -3,8 +3,6 @@
     document.getElementsByClassName("close")[0].addEventListener("click", () => { window.close() });
 })();
 
-var firstStartClicked = true;
-
 var runtimePort = chrome.runtime.connect({
     name: location.href.replace(/\/|:|#|\?|\$|\^|%|\.|`|~|!|\+|@|\[|\||]|\|*. /g, '').split('\n').join('').split('\r').join('')
 });
@@ -30,7 +28,7 @@ function stopRecording() {
             stopRecording: true,
             dropdown: true
         });
-        // window.close();
+        window.close();
     });
 };
 
@@ -47,17 +45,10 @@ function startRecording(time) {
         runtimePort.postMessage({
             messageFromContentScript1234: true,
             startRecording: true,
-            dropdown: true
+            dropdown: true,
+            time: time
         });
-        // window.close();
-        setTimeout(function () {
-            chrome.storage.sync.get('isRecording', function (obj) {
-                isRecording = obj.isRecording === 'true';
-            });
-            if (isRecording === true) {
-                stopRecording();
-            }
-        }, time * 1000)
+        window.close();
         chrome.storage.sync.get('isRecording', function (obj) {
             isRecording = obj.isRecording === 'true';
         });
@@ -69,8 +60,6 @@ document.getElementById('start-recording').onclick = function () {
     const consecutive = document.getElementById('consecutive').value;
     const name = document.getElementById('name').value;
     const time = document.getElementById('time').value;
-    firstStartClicked && startRecording(time);
-    firstStartClicked = false
     if (path == '' || consecutive == '' || name == '' || time == '') {
         alert('All fileds must be filled in!');
     } else {
@@ -78,18 +67,14 @@ document.getElementById('start-recording').onclick = function () {
             path, consecutive, name, time
         }, function () {
             startRecording(time)
-            recordProcessing = setInterval(function () {
-                startRecording(time)
-            }, (parseInt(time) + 2) * 1000)
         })
     }
 };
 
 document.getElementById('stop-recording').onclick = function () {
-    // clearInterval(recordProcessing);
-    chrome.storage.sync.get('isRecording', function (obj) {
-        isRecording = obj.isRecording === 'true';
-        if (isRecording === true) {
+    // chrome.storage.sync.get('isRecording', function (obj) {
+    //     isRecording = obj.isRecording === 'true';
+    //     if (isRecording === true) {
             stopRecording();
 
             // chrome.tabs.query({}, function (tabs) {
@@ -109,8 +94,8 @@ document.getElementById('stop-recording').onclick = function () {
             //         chrome.tabs.remove(tabIds);
             //     }
             // });
-        }
-    });
+        // }
+    // });
 
 }
 
