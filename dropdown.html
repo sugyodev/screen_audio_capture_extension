@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<!-- <link type="text/css" rel="stylesheet" href="dropdown.css"> -->
+
+<head>
+  <style>
+    #default-section {
+      padding: 2px 14px;
+      height: 295px;
+      width: 500px;
+      text-align: center;
+    }
+
+    table {
+      padding-right: 16px;
+      margin-bottom: 16px;
+    }
+
+    input {
+      margin-left: 4px;
+      border: solid 1.5px #1d468e;
+      border-radius: 2px;
+      width: 275px;
+      margin: 4px;
+      padding: 8px;
+      background-color: #DAE3F3;
+      color: #1d468e;
+      outline: none;
+    }
+
+    input:focus {
+      background-color: white;
+    }
+
+    p {
+      font-weight: 600;
+      text-align: right;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      height: 12%;
+    }
+
+
+    .footer-message {
+      display: block;
+      font-size: 0.9em;
+    }
+
+    div button {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 8px;
+      background-color: #4472C4;
+      color: white;
+      font-size: 18px;
+      border: none;
+      margin: 8px;
+      cursor: pointer;
+    }
+
+    .close {
+      cursor: pointer;
+      float: right;
+      color: red;
+      padding-right: 24px;
+      font-size: 30px;
+      margin-top: -20px;
+    }
+
+    section {
+      margin-right: 5px;
+      text-align: right;
+      width: 24px;
+      display: inline-block;
+      vertical-align: baseline;
+    }
+
+    #stop-sharing {
+      color: #e20a0a;
+      font-weight: bold;
+    }
+
+  </style>
+  <title>RecordRTC Extension</title>
+</head>
+
+<body>
+  <article id="default-section">
+    <p class="close">&times;</p>
+    <table>
+      <tr>
+        <td>
+          <p>Path:</p>
+        </td>
+        <td><input type="text" placeholder="" id="path"/></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Name:</p>
+        </td>
+        <td><input type="text" placeholder="" id="name"/></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Consecutive Number:</p>
+        </td>
+        <td><input type="number" placeholder="" style="width: 80px;float: left;" id="consecutive"/></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Time of each recording of file:</p>
+        </td>
+        <td><input type="number" placeholder="" style="width: 80px;margin-right: 8px;float: left;" id="time"/><span
+            style="font-weight: 600;font-size: 16px;float: left;padding-top: 8px;">Minutes</span></td>
+      </tr>
+    </table>
+    <div>
+      <button id="start-recording">Start Recording</button>
+      <button id="stop-recording">Stop Recording</button>
+    </div>
+  </article>
+  <script src="dropdown.js"></script>
+</body>
+
+</html>
